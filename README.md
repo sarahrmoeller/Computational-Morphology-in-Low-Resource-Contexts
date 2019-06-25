@@ -7,5 +7,5 @@ Readable is the PDF version.
 
 Commments welcomed! 
 
-##Technical
+## Technical
 Latex formated. Synced with Overleaf. 
