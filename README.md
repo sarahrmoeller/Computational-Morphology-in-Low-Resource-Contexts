@@ -3,7 +3,7 @@ Overview of computational morphology and its application to low resource languag
 
 This is my second qualifying paper in the PhD progress at University of Colorado Boulder Dept. of Linguitics and Institute in Cognitive Science. Hopefully, it be a big chunk of my dissertation's lit review. The last section is serving as an unofficial proposal to the dissertation proposal.
 
-Readable is the PDF version. 
+Readable is the <a href="https://github.com/theSarahRu/Computational-Morphology-in-Low-Resource-Contexts/blob/master/zzz_Computational_Morphology_in_Low_Resource_Contexts.pdf">PDF version</a>. 
 
 Commments welcomed! 
 
