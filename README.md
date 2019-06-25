@@ -3,6 +3,9 @@ Overview of computational morphology and its application to low resource languag
 
 This is my second qualifying paper in the PhD progress at University of Colorado Boulder Dept. of Linguitics and Institute in Cognitive Science. Hopefully, it be a big chunk of my dissertation's lit review. The last section is serving as an unofficial proposal to the dissertation proposal.
 
-Read in main.tex. Latex formate. Synced with Overleaf. 
+Readable is the PDF version. 
 
 Commments welcomed! 
+
+##Technical
+Latex formated. Synced with Overleaf. 
