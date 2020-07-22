@@ -88,42 +88,56 @@ Before continuing, it is worth emphasizing a subtle but significant difference b
 \subsection{Morphological Analysis and Annotation}
 \label{analysis}
 
-Morphological analysis can be separated into two core tasks \cite{cotterell_labeled_2015,hammarstrom_unsupervised_2011,nicolai_morphological_2017,palmer_semi-automated_2009}. The first task is identifying morphemes by determining their shapes and marking boundaries between them, as done for the Lezgi [lez] noun in (\ref{ex:Lezgi1b}). This task is called (unlabeled) morpheme segmentation \cite{creutz_unsupervised_2007,snyder_unsupervised_2008}. The second task is deducing each morpheme's meaning. This is known as labeled morpheme segmentation, parsing, or glossing. When both tasks are done, the second task involves associating each morpheme with a label (gloss) that indicates its meaning or morphosyntactic function. For example, the Lezgi morphemes below have been glossed in (\ref{ex:Lezgi1c}) as \textsc{obl} (oblique stem) and \textsc{gen} (genitive case). These two tasks are a large part of linguistic data annotation. When performed computationally, both tasks are more properly seen as annotation because a computer algorithm cannot make analytical decisions (though it finds complicated patterns and makes probablistic predictions that may seem like analytical decisions).
+Morphological analysis can be separated into two core tasks \cite{cotterell_labeled_2015,hammarstrom_unsupervised_2011,nicolai_morphological_2017,palmer_semi-automated_2009}. The first task is identifying morphemes by determining their shapes and marking boundaries between them, as done in (\ref{ex:En1b}). This task is called (unlabeled) morpheme segmentation \cite{creutz_unsupervised_2007,snyder_unsupervised_2008}. The second task is deducing each morpheme's meaning. This is known as labeled morpheme segmentation, parsing, or glossing. When parsing follows segmentation, it means associating each morpheme with a label (gloss) that indicates its meaning or morphosyntactic function, as done in (\ref{ex:En1c}). 
+%For example, the Lezgi morphemes below have been glossed in (\ref{ex:Lezgi1c}) as \textsc{obl} (oblique stem) and \textsc{gen} (genitive case). 
+These two tasks are a large part of linguistic data annotation. When performed computationally, both tasks are more properly seen as annotation because a computer algorithm cannot make analytical decisions (though it finds complicated patterns and makes probablistic predictions that may seem like analytical decisions).
 
 \begin{singlespace}
 
-\pex<Lezgi1>   
-\label{ex:Lezgi1}
-\a<a> pa\c{c}ahdin 
-\label{ex:Lezgi1a}
-\a<b> pa\c{c}ah-di-n 
-\label{ex:Lezgi1b}
-\a<c> king-\textsc{obl}-\textsc{gen} 
-\label{ex:Lezgi1c}
-\a `king's'
-\label{ex:Lezgi1d}
+%\pex<Lezgi1>   
+%\label{ex:Lezgi1}
+%\a<a> pa\c{c}ahdin 
+%\label{ex:Lezgi1a}
+%\a<b> pa\c{c}ah-di-n 
+%\label{ex:Lezgi1b}
+%\a<c> king-\textsc{obl}-\textsc{gen} 
+%\label{ex:Lezgi1c}
+%\a `king's'
+%\label{ex:Lezgi1d}
+%\xe
+
+\pex<En1>   
+\label{ex:En1}
+\a<a> walked
+\label{ex:En1a}
+\a<b> walk-ed
+\label{ex:En1b}
+\a<c> perambulate-\textsc{past} 
+\label{ex:En1c}
+\a walk [\textsc{past}]
+\label{ex:En1d}
 \xe
 
 \end{singlespace}
 
-Parsing---discovering morphemes' meanings---does not necessarily require morpheme identification and segmentation. It is possible to parse a word without identifying the individual morphemes. Parsing without segmentation is more common in computational methods. Computational morphology aims to take texts from any human language and build a model that accounts for every word in them, then generalize the model to unseen words in new texts \cite{goldsmith_computational_2017}. If the immediate task can be accomplished without morpheme identification and segmentation, a model may skip it, as, for example, in one CoNLL-SIGMORPHON 2018 shared task, shown in (\ref{ex:ConLL-T2}), where words were inflected without identifying the language's morphemes \cite{cotterell_conllsigmorphon_2018}. Parsing may also include a lemmatization step, where the orthographic representation of the stem morpheme is identified. This is a standard approach of hand-constructed morphological analyzers (see section \ref{sec:FSTs}) which output the lemma along with a bundle of tags that indicate the morphosyntactic features of the inflected form. 
+Parsing---discovering morphemes' meanings---does not necessarily require morpheme identification and segmentation. It is possible to parse a word without identifying the individual morphemes. In other words, it is possible to produce (\ref{ex:En1c}) without first producing (\ref{ex:En1b}). Parsing without segmentation is more common in computational methods. Computational morphology aims to take texts from any human language and build a model that accounts for every word in them, then generalize the model to unseen words in new texts \cite{goldsmith_computational_2017}. If the immediate task can be accomplished without morpheme identification and segmentation, a model may skip it, as, for example, in one CoNLL-SIGMORPHON 2018 shared task, shown in (\ref{ex:ConLL-T2}), where words were inflected without identifying the language's morphemes \cite{cotterell_conllsigmorphon_2018}. Parsing may also include a lemmatization step, where the orthographic representation of the stem morpheme is identified, as in (\ref{ex:En1d}). This is a standard approach of hand-constructed morphological analyzers (see section \ref{sec:FSTs}) which output the lemma along with a bundle of tags that indicate the morphosyntactic features of the inflected form. 
 %\footnote{One field linguist (p.c.) claims the reverse is possible - native speakers could segment words into their minimally meaningful parts without being able to identify those meanings.  But it does not seem likely that this would achieve good results since the speaker could not grasp the semantic or syntactic factors that determine a morpheme’s shape.} 
 
 \begin{singlespace}
 \pex<ConLL-T2>   
 \label{ex:ConLL-T2}
-\a<a> \textbf{INPUT:}  The \rule{1cm}{0.15mm} are barking.  \hspace{5 mm} \textit{dog}
+\a<a> \textbf{INPUT:}  The dogs are \rule{1cm}{0.15mm} .  \hspace{5 mm} \textit{walking}
 \label{ex:ConLL-T2a}
-\a<b> \textbf{OUTPUT:} dogs
+\a<b> \textbf{OUTPUT:} walking
 \label{ex:ConLL-T2b}
 \xe
 \end{singlespace}
 
-\newcite{nicolai_morphological_2017} divide the morphological analysis subtasks slightly differently, making a distinction between morphological “analysis” and morphological tagging. They describe morphological analysis as a combination of segmentation and labeling, though they later state that ``morphological tagging can be performed as a downstream application of morphological analysis''.
+\newcite{nicolai_morphological_2017} divide the morphological analysis subtasks slightly differently, making a distinction between morphological “analysis” and morphological tagging. They describe morphological analysis as a combination of segmentation and labeling, that is (\ref{ex:En1b}) and (\ref{ex:En1c}) together, though they later state that ``morphological tagging can be performed as a downstream application of morphological analysis''.
 %\cite[p. 211]{nicolai_morphological_2017}
 They thereby adhere to the same two distinctions described above. \newcite{virpioja_empirical_2011} adds a third task: identification of morphologically related words. However, this is more properly seen as a later step in general morphological description, and a first step to identifying inflectional classes and the systematic rules that govern them (see section \ref{paradigms}).
 
-Computationally, morpheme segmentation algorithms are quite similar to word segmentation approaches. They divides strings of text. This is sometimes called surface segmentation in contrast to segmentation where abstract forms are provided (canonical segmentation). Computational segmentation tends to perform better on concatenative morphology, where words are built from morphemes like beads on a string such as in example \ref{ex:Lezgi1}. Computational modeling of non-concatenative morphology, particularly when it occurs in a language that combines with concatenative morphology, remains ``arguably one of the main current challenges of the field'' and attempts ``have been mostly applied to Arabic'' \cite{goldsmith_computational_2017}.
+Computationally, morpheme segmentation algorithms are quite similar to word segmentation approaches. They divides strings of text. This is sometimes called surface segmentation (e.g. ``runn-ing'') in contrast to canonical segmentation where abstract forms are provided (e.g. ``run-ing''). Computational segmentation tends to perform better on concatenative morphology, where words are built from morphemes like beads on a string such as in example \ref{ex:Lezgi1}. Computational modeling of non-concatenative morphology, particularly when it occurs in a language that combines with concatenative morphology, remains ``arguably one of the main current challenges of the field'' and attempts ``have been mostly applied to Arabic'' \cite{goldsmith_computational_2017}.
 
 Computational approaches can be lexicon-based, focusing on detecting morpheme shapes, or it can focus on detecting morpheme boundaries \cite{goodman_generation_2013}. Most lexicon-based approaches learn a generative model. They create a model of word forms and can generate them. Most boundary detection models perform discriminative learning, probabilistically estimating the segmentation boundaries in a given word. Both provide a lexicon of morphemes which is more useful than a vocabulary of inflected words as they appear in running text \cite{creutz_unsupervised_2002}.  
 
@@ -363,7 +377,7 @@ Supervised learning of morphology means that models are trained on gold standard
 \begin{singlespace}
 \pex<SupLT>   
 \label{ex:SupLT}
-\a<a> \textbf{Training Data:} \hspace{2mm} walked \hspace{2mm} $\rightarrow$ \hspace{2mm} walk.MOVE \hspace{1mm} ed.\textsc{past}
+\a<a> \textbf{Training Data:} \hspace{2mm} walked \hspace{2mm} \hspace{5mm} \textit{walk.PERAMBULATE} \hspace{1mm} ed.\textsc{past}
 \label{ex:SupLTD}
 \a<b> \textbf{Features:}  tense=PAST, \hspace{1mm} POS=V, \hspace{1mm} previousword=X, \hspace{1mm} nextword=Y, \hspace{1mm} \dots 
 \label{ex:SupLTFtrs}
